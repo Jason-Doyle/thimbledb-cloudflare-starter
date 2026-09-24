@@ -32,15 +32,22 @@ does not create Cloudflare resources or deploy anything.
    data.
 3. Uncomment the R2 bindings and replace the disabled examples with real
    bucket names.
-4. Configure Microsoft Entra or another OIDC provider and its API audience.
-5. Set the exact browser origin in `THIMBLE_ALLOWED_ORIGIN`.
-6. Store a base64-encoded 32-byte master key:
+4. Generate and merge the recommended Entra entries:
+
+   ```powershell
+   npx thimbledb generate-entra-roles `
+     --out ".\entra-authorization.json"
+   ```
+
+5. Configure Microsoft Entra or another OIDC provider and its API audience.
+6. Set the exact browser origin in `THIMBLE_ALLOWED_ORIGIN`.
+7. Store a base64-encoded 32-byte master key:
 
    ```powershell
    npx wrangler secret put THIMBLE_MASTER_KEY
    ```
 
-7. Validate, then deploy:
+8. Validate, then deploy:
 
    ```powershell
    npm run check
@@ -57,6 +64,10 @@ guides are available at
 [thimbledb.com/docs](https://thimbledb.com/docs/).
 ThimbleDB source and releases are available in the
 [main repository](https://github.com/Jason-Doyle/thimble).
+
+For automation, use an OIDC service principal with an explicit application
+role. Do not replace that short-lived identity flow with a static global
+database key.
 
 ## Security boundary
 
