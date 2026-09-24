@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ThimbleDB Cloudflare notes</title>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Cloudflare ThimbleDB starter</p>
+      <h1>Notes</h1>
+      <p class="lede">
+        A Worker authority, private R2 storage, external OIDC, typed notes,
+        and declared secondary indexes.
+      </p>
+
+      <section id="auth-panel" class="auth-panel">
+        <h2>Sign in</h2>
+        <label>
+          OIDC provider
+          <select id="provider"></select>
+        </label>
+        <label>
+          API access token
+          <textarea id="token" rows="5"></textarea>
+        </label>
+        <button id="sign-in" type="button">Create session</button>
+        <p id="auth-message" role="status"></p>
+      </section>
+
+      <section id="app" hidden>
+        <div class="session-row">
+          <p>Authenticated user scope</p>
+          <button id="sign-out" type="button" class="secondary">
+            Sign out
+          </button>
+        </div>
+        <form id="note-form">
+          <label>
+            Title
+            <input id="title" name="title" required />
+          </label>
+          <label>
+            Body
+            <textarea id="body" name="body" rows="4"></textarea>
+          </label>
+          <button type="submit">Add note</button>
+        </form>
+        <section class="toolbar">
+          <label>
+            Indexed title lookup
+            <input id="title-filter" placeholder="Exact title" />
+          </label>
+          <button id="filter" type="button">Find</button>
+          <button id="show-all" type="button" class="secondary">
+            Show all
+          </button>
+        </section>
+        <p id="status" role="status"></p>
+        <div id="restore" hidden>
+          <button id="restore-button" type="button" class="secondary">
+            Restore last deleted note
+          </button>
+        </div>
+        <section id="notes" class="notes"></section>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

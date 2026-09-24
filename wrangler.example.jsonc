@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "thimbledb-cloudflare-starter",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-09-24",
+  "workers_dev": false,
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  }
+
+  // Copy this file to wrangler.jsonc before configuring a deployment.
+  // Keep every account-specific setting disabled until the real resource
+  // exists.
+
+  // "vars": {
+  //   "THIMBLE_PREFIX": "notes",
+  //   "THIMBLE_KEY_VERSION": "1",
+  //   "THIMBLE_ALLOWED_ORIGIN": "https://notes.example.com",
+  //   "ENTRA_TENANT_ID": "<tenant-id>",
+  //   "ENTRA_AUDIENCE": "<api-client-id>",
+  //   "ENTRA_REQUIRED_SCOPE": "thimble.access"
+  // },
+
+  // "r2_buckets": [
+  //   {
+  //     "binding": "DB",
+  //     "bucket_name": "<private-data-bucket>"
+  //   },
+  //   {
+  //     "binding": "AUTH_DB",
+  //     "bucket_name": "<private-auth-bucket>"
+  //   }
+  // ],
+
+  // "routes": [
+  //   {
+  //     "pattern": "notes.example.com",
+  //     "custom_domain": true
+  //   }
+  // ]
+}

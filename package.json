@@ -1,0 +1,27 @@
+{
+  "name": "thimbledb-cloudflare-starter",
+  "version": "1.0.0",
+  "description": "Authenticated notes starter for ThimbleDB, Cloudflare Workers, R2, and Vite.",
+  "private": true,
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jason-Doyle/thimbledb-cloudflare-starter.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && wrangler dev --config wrangler.jsonc",
+    "check": "tsc --noEmit && vite build && wrangler deploy --dry-run --config wrangler.example.jsonc",
+    "build": "vite build",
+    "deploy": "npm run build && wrangler deploy --config wrangler.jsonc"
+  },
+  "dependencies": {
+    "thimbledb": "^2.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260923.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.3.6",
+    "wrangler": "^4.137.0"
+  }
+}
