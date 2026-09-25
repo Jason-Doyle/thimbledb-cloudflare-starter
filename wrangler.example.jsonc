@@ -18,6 +18,8 @@
   // "vars": {
   //   "THIMBLE_PREFIX": "notes",
   //   "THIMBLE_KEY_VERSION": "1",
+  //   "THIMBLE_COLLECTIONS": "notes",
+  //   "THIMBLE_STUDIO_ORIGIN": "https://notes.example.com",
   //   "THIMBLE_ALLOWED_ORIGIN": "https://notes.example.com",
   //   "ENTRA_TENANT_ID": "<tenant-id>",
   //   "ENTRA_AUDIENCE": "<api-client-id>",
