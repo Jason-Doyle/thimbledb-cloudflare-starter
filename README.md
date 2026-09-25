@@ -25,6 +25,8 @@ npm run check
 The check builds the browser application and performs a Worker dry run. It
 does not create Cloudflare resources or deploy anything.
 
+The build also copies the version-matched Studio assets to `dist/studio`.
+
 ## Configure Cloudflare
 
 1. Copy `wrangler.example.jsonc` to `wrangler.jsonc`.
@@ -53,6 +55,10 @@ does not create Cloudflare resources or deploy anything.
    npm run check
    npm run deploy
    ```
+
+Open `/studio/` on the deployed authority to use the package-owned management
+frontend. Studio starts read-only and applies the same OIDC and scope grants as
+the notes application.
 
 No development identity is available in the Cloudflare authority. The host
 application must obtain an API access token from the configured identity
