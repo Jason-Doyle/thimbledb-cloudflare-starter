@@ -11,6 +11,11 @@ export type Note = {
   lastModified: number;
 };
 
+export type NoteSummary = Pick<
+  Note,
+  "id" | "title" | "lastModified"
+>;
+
 const noteSchema = {
   parse(value: unknown): Note {
     if (
@@ -31,12 +36,35 @@ const noteSchema = {
   },
 };
 
+export const noteSummarySchema = {
+  parse(value: unknown): NoteSummary {
+    if (
+      typeof value !== "object" ||
+      value === null ||
+      !("id" in value) ||
+      typeof value.id !== "string" ||
+      !("title" in value) ||
+      typeof value.title !== "string" ||
+      !("lastModified" in value) ||
+      typeof value.lastModified !== "number"
+    ) {
+      throw new Error("Invalid note summary");
+    }
+    return value as NoteSummary;
+  },
+};
+
 export const notesDefinition = defineCollection(
   "notes",
   noteSchema,
   {
     indexes: [
-      defineIndex<Note>("by-title", ["title"]),
+      defineIndex<Note>(
+        "by-title",
+        ["title"],
+        "equality",
+        { include: ["lastModified"] },
+      ),
       defineIndex<Note>(
         "by-last-modified",
         ["lastModified"],

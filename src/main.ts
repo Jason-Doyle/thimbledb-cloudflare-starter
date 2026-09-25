@@ -6,7 +6,9 @@ import {
 } from "thimbledb";
 import {
   notesDefinition,
+  noteSummarySchema,
   type Note,
+  type NoteSummary,
 } from "./collections";
 import "./styles.css";
 
@@ -174,6 +176,10 @@ async function findByTitle(): Promise<void> {
     .where((note) => note.title.eq(title))
     .orderBy((note) => note.lastModified.desc())
     .take(50)
+    .select(
+      ["title", "lastModified"],
+      noteSummarySchema,
+    )
     .get();
   status.textContent =
     `${result.documents.length} notes via ${result.plan}` +
@@ -191,14 +197,21 @@ async function renderAll(): Promise<void> {
   renderNotes(result.documents);
 }
 
-function renderNotes(items: Note[]): void {
+function renderNotes(
+  items: Array<
+    Note | NoteSummary
+  >,
+): void {
   notesOutput.replaceChildren(
     ...items.map((note) => {
       const article = document.createElement("article");
       const title = document.createElement("h2");
       title.textContent = note.title;
       const body = document.createElement("p");
-      body.textContent = note.body || "No body";
+      body.textContent =
+        "body" in note
+          ? note.body || "No body"
+          : "Use Show all to load the note body.";
       const metadata = document.createElement("small");
       metadata.textContent = new Date(
         note.lastModified,
