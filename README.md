@@ -12,6 +12,8 @@ It includes:
 - typed notes
 - declared title and modification-time indexes
 - bounded fluent queries
+- opt-in bounded cold point-read bundles
+- explicit covering index projections
 - deletion and restore
 - memory and encrypted IndexedDB caches
 
@@ -59,6 +61,11 @@ The build also copies the version-matched Studio assets to `dist/studio`.
 Open `/studio/` on the deployed authority to use the package-owned management
 frontend. Studio starts read-only and applies the same OIDC and scope grants as
 the notes application.
+
+This starter embeds the authority and assets in one Worker deployment. The
+authority can instead run in a separately routed Worker while `/api/*` and
+`/studio/*` remain on the same public browser origin. See the
+[authority deployment guide](https://thimbledb.com/docs/authority-deployment/).
 
 No development identity is available in the Cloudflare authority. The host
 application must obtain an API access token from the configured identity

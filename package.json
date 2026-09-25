@@ -16,7 +16,7 @@
     "deploy": "npm run build && wrangler deploy --config wrangler.jsonc"
   },
   "dependencies": {
-    "thimbledb": "^3.0.0"
+    "thimbledb": "^3.1.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260923.1",
